@@ -50,10 +50,10 @@
 // import { createApp } from 'vue';
 // import { Options } from 'vue-class-component';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-import { defineComponent, reactive, ReactiveEffectOptions, toRefs } from 'vue';
-import { Store, useStore } from 'vuex';
+import { defineComponent, reactive, toRefs } from 'vue';
+import { useStore } from 'vuex';
 import { IGlobalState } from '@/store';
-import { Router, useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
 import { login } from '@/server/login';
 import * as Types from '@/store/action-types';
 declare const window: Window & { less: any };
@@ -80,7 +80,7 @@ export default defineComponent({
         const handleSubmit = async() => {
             const { data } = await login(state.userInfo);
             if (data.code === 200) {
-                router.push('/');
+                router.push('/index');
                 store.commit(`login/${Types.TOKENINFO}`, data.data);
             }
             // window.less.modifyVars({

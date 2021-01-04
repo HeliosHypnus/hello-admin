@@ -11,7 +11,17 @@ const routes: Array<RouteRecordRaw> = [
 	redirect: '/login',
 	children: [
 		{
-			path: "/Admin",
+			path: '/index',
+			name: "Index",
+			meta: {
+				title: 'Index',
+				icon: 'icon-deploy'
+			},
+			component: () =>
+			import(/* webpackChunkName: "index" */ "../views/index/index.vue"),
+		},
+		{
+			path: "/admin",
 			name: "Admin",
 			meta: {
 				title: 'Admin',
@@ -20,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
 			component: Main,
 			children: [
 				{
-					path: 'User',
+					path: 'user',
 					name: 'User',
 					meta: {
 						title: 'User',

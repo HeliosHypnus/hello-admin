@@ -62,3 +62,60 @@ export default defineComponent({
     }
 });
 </script>
+<style lang="less">
+    .m-dark {
+        .ant-table-body {
+            color: #a8a9bb;
+            padding: 0 10px 10px 10px;
+            .ant-table-thead > tr > th {
+                background: #223 !important;
+                color: #a8a9bb;
+                 border-bottom: none;
+            }
+            tr {
+                background: #2c2c43;
+                td {
+                    border-bottom: 1px solid #000;
+                }
+            }
+            tr:hover {
+                td {
+                    background: #2c2c43 !important;
+                }
+            }
+        }
+        .ant-table {
+            background: #223 !important;
+        }
+        .ant-pagination {
+            color: #a8a9bb !important;
+            .ant-select-selector {
+                background: #223;
+                border: 1px solid #223;
+            }
+            .ant-select-selector {
+                background-color: #223 !important;
+                border: 1px solid #223 !important;
+                .ant-select-selection-item {
+                    color: #a8a9bb !important; 
+                }
+            }
+            .ant-select-arrow {
+                color: #a8a9bb !important;
+            }
+        }
+        .ant-pagination-item-active {
+            background: #223;
+            border-color: #223;
+            color: #a8a9bb;
+            a {
+                color: #a8a9bb !important;
+            }
+        }
+        .ant-pagination-prev, .ant-pagination-next {
+            a {
+                color: #a8a9bb !important;
+            }
+        }
+    }
+</style>

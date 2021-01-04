@@ -14,13 +14,12 @@
         <a-menu
             class="theme"
             mode="inline"
-            :defaultSelectedKeys="[activeMenu]"
-            :selectedKeys="[activeMenu]"
+            :defaultSelectedKeys="activeMenu"
+            :selectedKeys="activeMenu"
             @click="setActiveMenu">
                 <template v-for="item in routers[0].children" :key="item.path">
                     <a-menu-item :key="item.path" v-if="!item.children">
-                        <i class="iconfont" :class="item.meta && item.meta.icon"></i>
-                        <span>{{item.meta.title}}</span>
+                        <span><span class="anticon"><i class="iconfont" :class="item.meta && item.meta.icon"></i></span><span>{{item.meta.title}}</span></span>
                     </a-menu-item>
                     <a-sub-menu :key="item.path" v-else>
                         <template #title>
@@ -28,7 +27,7 @@
                         </template>
                         <a-menu-item v-for="v in item.children" :key="v.path">
                             <i class="iconfont" :class="v.meta && v.meta.icon"></i>
-                            {{v.path}}
+                            {{v.meta.title}}
                         </a-menu-item>
                     </a-sub-menu>
                 </template>
@@ -53,9 +52,10 @@ function useSetting(store: Store<IGlobalState>, router: Router) {
     }
     function setActiveMenu(activeMenu: any) {
         const { keyPath } = activeMenu;
+        debugger
         const path = keyPath.reverse().join('/');
         router.push(path);
-        store.commit(`setting/${Types.SET_ACTIVEMENU}`, activeMenu);
+        store.commit(`setting/${Types.SET_ACTIVEMENU}`, keyPath);
     }
     return {
         isCollapse,
@@ -122,6 +122,15 @@ export default defineComponent({
              background-color: #f7f7f9;
          }   
         }
+        .ant-menu-item-selected {
+            font-weight: 700 !important;
+            .iconfont {
+                font-weight: normal;
+            }
+        }
+        .ant-menu-item {
+            text-align: left;
+        }
        .ant-menu-submenu-title {
            text-align: left;
         }
@@ -143,6 +152,44 @@ export default defineComponent({
         .logo {
             h1 {
                 color: #fff;
+            }
+        }
+        .ant-layout {
+            background-color: #2c2c43;
+        }
+        .ant-menu-inline-collapsed {
+            border-right: none;
+        }
+        .ant-layout-sider-dark {
+            background-color: #223;
+            .ant-menu {
+                background-color: #223;
+                color: #a8a9bb !important;
+                .ant-menu-submenu-open {
+                    .ant-menu-submenu-title{
+                        background-color: #223;
+                    }
+                }
+                .ant-menu-submenu-title:hover {
+                    background-color: #223;
+                }
+                // .ant-menu-sub {
+                    .ant-menu-item:hover {
+                        background: #223;
+                        .iconfont {
+                            color: #fff;
+                        }
+                    }
+                // }
+                .ant-menu-item-selected {
+                    background: #1e1e2d;
+                }
+            }
+            .ant-menu-submenu-arrow::before, .ant-menu-submenu-arrow::after {
+                background: #a8a9bb !important;
+            }
+            .ant-menu-inline {
+                border-right: none;
             }
         }
     }

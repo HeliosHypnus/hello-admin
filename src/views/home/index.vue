@@ -1,6 +1,6 @@
 <template>
     <div class="n-home">
-        <a-layout>
+        <a-layout class="ant-layout-has-sider">
             <SideLeft/>
             <a-layout>
                 <Header/>
@@ -27,15 +27,19 @@ export default {
 <style lang='less'>
 .n-home {
     width: 100%;
-    .ant-layout {
-        // flex-direction: inherit;
-    }
     .n-layout-content {
-        padding: 15px;
+        // padding: 15px;
         // height: calc(~"100vh - 56px");
         margin: 24px 16px;
         background: #fff;
         min-height: calc(~"100vh - 104px") 
+    }
+}
+.m-dark {
+    .n-home {
+        .n-layout-content {
+            background: #2c2c43;
+        }
     }
 }
 </style>

@@ -1,5 +1,6 @@
-@primary-color: green;
-@layout-header-background: #343339;
+@primary-color: #586cb1;
+@layout-header-background: #223;
+@table-row-hover-bg: #e4eee2;
 html {-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
 body {color: rgba(0, 0, 0, 0.65);background-color: #fff;}
 h1,
@@ -1187,7 +1188,7 @@ form .ant-upload {background: transparent;}
 .ant-table-thead > tr:first-child > th:last-child {border-top-right-radius: 2px;}
 .ant-table-thead > tr:not(:last-child) > th[colspan] {border-bottom: 0;}
 .ant-table-tbody > tr > td {border-bottom: 1px solid #f0f0f0;}
-.ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td, .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td, .ant-table-thead > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td, .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {background: color(~`colorPalette("@{primary-color}", 1)`);}
+.ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td, .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td, .ant-table-thead > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td, .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {background: @table-row-hover-bg;}
 .ant-table-thead > tr.ant-table-row-selected > td.ant-table-column-sort, .ant-table-tbody > tr.ant-table-row-selected > td.ant-table-column-sort {background: #fafafa;}
 .ant-table-thead > tr:hover.ant-table-row-selected > td, .ant-table-tbody > tr:hover.ant-table-row-selected > td {background: #fafafa;}
 .ant-table-thead > tr:hover.ant-table-row-selected > td.ant-table-column-sort, .ant-table-tbody > tr:hover.ant-table-row-selected > td.ant-table-column-sort {background: #fafafa;}
@@ -1498,11 +1499,11 @@ li.ant-select-tree-treenode-disabled > .ant-select-tree-node-content-wrapper:hov
 .ant-upload-list-picture-card .ant-upload-list-item-uploading.ant-upload-list-item {background-color: #fafafa;}
 .ant-upload-list-picture-card .ant-upload-list-item-uploading-text {color: rgba(0, 0, 0, 0.45);}
 .ant-upload-list .ant-upload-success-icon {color: #52c41a;}
-body.m-light {color: #414750;}
-body.m-dark {color: #a8a9bb;background-color: #1e1e2d;}
-body.m-dark .ant-layout {background-color: #2c2c43;}
-body #nprogress .bar {background: green !important;}
-.primary-color {color: green;}
+body.m-light {color: #414750 !important;}
+body.m-light .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {background-color: #fff !important;}
+body.m-dark {color: #a8a9bb !important;background-color: #1e1e2d;}
+body #nprogress .bar {background: #586cb1 !important;}
+.primary-color {color: #586cb1;}
 body > .m-light {color: #414750;}
 a {background-color: transparent;}
 abbr[title] {border-bottom: none;}
@@ -1512,9 +1513,14 @@ button::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
 [type="submit"]::-moz-focus-inner {border-style: none;}
 legend {color: inherit;}
-body.m-light {color: #414750;}
-body.m-dark {color: #a8a9bb;background-color: #1e1e2d;}
-body.m-dark .ant-layout {background-color: #2c2c43;}
+body.m-light {color: #414750 !important;}
+body.m-light .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {background-color: #fff !important;}
+body.m-dark {color: #a8a9bb !important;background-color: #1e1e2d;}
+body #nprogress .bar {background: #586cb1 !important;}
+.primary-color {color: #586cb1;}
+body.m-light {color: #414750 !important;}
+body.m-light .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {background-color: #fff !important;}
+body.m-dark {color: #a8a9bb !important;background-color: #1e1e2d;}
 body #nprogress .bar {background: @primary-color !important;}
 .primary-color {color: @primary-color;}
 .bezierEasingMixin() {
@@ -2435,7 +2441,6 @@ this.tinycolor = tinycolor;})()`;}
 @table-header-color: @heading-color;
 @table-header-sort-bg: @background-color-base;
 @table-body-sort-bg: rgba(0, 0, 0, 0.01);
-@table-row-hover-bg: @primary-1;
 @table-selected-row-color: inherit;
 @table-selected-row-bg: #fafafa;
 @table-body-selected-sort-bg: @table-selected-row-bg;

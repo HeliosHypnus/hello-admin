@@ -1,16 +1,22 @@
 import axios, { AxiosResponse } from 'axios'
 import { message } from 'ant-design-vue';
+// import { Store, useStore } from 'vuex';
+// import { computed } from 'vue';
+// import { IGlobalState } from '@/store';
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
 
 nprogress.configure({showSpinner: false});
 const CancelToken: any = axios.CancelToken; // axios 的取消请求
-
+// const store = useStore<IGlobalState>();
+// console.log(store)
+// const theme = computed(() => store.state.setting.theme);
 const service = axios.create({
     timeout: 5000,  // 超时时间
     withCredentials: true,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer `
     }
 })
 

@@ -20,7 +20,7 @@ export interface UserInfo {
 /* 菜单设置 */
 export interface SettingState {
     isCollapse: boolean
-    activeMenu: string
+    activeMenu: unknown[]
     theme: string
 }
 export enum LOGIN_types {

@@ -16,6 +16,7 @@ generateTheme ({
     '@layout-body-background',
     '@btn-primary-bg',
     '@layout-header-background',
+    '@table-row-hover-bg'
   ], //您要动态更改的变量列表
   indexFileName: 'index.html',
   outputFilePath: path.join (__dirname, './public/color.less'), //生成的color.less文件的位置

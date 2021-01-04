@@ -5,7 +5,7 @@ import {IGlobalState} from '..';
 
 const state: SettingState = {
     isCollapse: false,
-    activeMenu: '',
+    activeMenu: ['/index'],
     theme: 'light'
 };
 
@@ -16,7 +16,7 @@ const setting: Module<SettingState, IGlobalState> = {
         [Types.SET_COLLAPSE](state, payload: boolean){ // 设置展开收缩
             state.isCollapse = payload
         },
-        [Types.SET_ACTIVEMENU](state, payload: string) { // 设置选中菜单
+        [Types.SET_ACTIVEMENU](state, payload: unknown[]) { // 设置选中菜单
             state.activeMenu = payload
         },
         [Types.SET_THEME](state, payload: string) { // 主题设置
