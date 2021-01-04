@@ -1,0 +1,81 @@
+@drop-bg: #32363a;
+@border-color: #55616d;
+.t-drop {
+    ul {
+        // background-color: @drop-bg;
+        // li {
+        //     background-color: @drop-bg;
+        //     color: hsla(0,0%,100%,.67);
+        // }
+        // li:hover {
+        //     background-color: transparent;
+        //     color: var(--font-color1);
+        // }
+    }
+}
+.t_header {
+    width: 100%;
+    // color: var(--font-color1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .iconfont {
+        display: inline-block;
+        padding: 4px;
+        margin-right: 15px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+    .trigger {
+        font-size: 18px;
+        margin-left: 16px;
+    }
+    .r-header {
+        display: flex;
+        align-items: center;
+    }
+    &.ant-layout-header {
+        padding: 0;
+        height: 56px;
+    }
+    .ant-dropdown-link {
+        transition: all .5s;
+        display: flex;
+        align-items: center;
+        padding-right: 15px;
+        cursor: pointer;
+        img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        span {
+            font-weight: 700;
+            margin-right: 4px;
+        }
+    }
+    .ant-dropdown-link:hover {
+        i {
+            // color: var(--primary-color);
+        }
+    }
+    .logo {
+        padding: 0 12px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        img {
+            width: 34px;
+            height: 34px;
+            display: block;
+            border-radius: 50%;
+        }
+    }
+}
+.m-light {
+    .t_header {
+        background-color: #fff;
+    }
+}

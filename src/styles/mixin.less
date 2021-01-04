@@ -1,0 +1,49 @@
+/* 替换颜色函数 */
+/* 通过该函数设置字体颜色，后期方便统一管理 */
+.font_color(@color) {
+    color: @color;
+    [data-theme="theme1"] & {
+      color: @font-color-theme1;
+    }
+    [data-theme="theme2"] & {
+      color: @font-color-theme2;
+    }
+    [data-theme="theme3"] & {
+      color: @font-color-theme3;
+    }
+    [data-theme="themedark"] & {
+      color: @font-color-themedark;
+    }
+    [data-theme="themesimple"] & {
+      color: @font-color-themesimple;
+    }
+  }
+  /* 通过该函数设置主题颜色，后期方便统一管理 */
+.bg_color(@color) {
+    background-color: @color;
+    [data-theme="theme1"] & {
+      background-color: @background-color-theme1;
+    }
+    [data-theme="theme2"] & {
+      background-color: @background-color-theme2;
+    }
+    [data-theme="theme3"] & {
+      background-color: @background-color-theme3;
+    }
+    [data-theme="themedark"] & {
+      background-color: @background-color-themedark;
+    }
+    [data-theme="themesimple"] & {
+      background-color: @background-color-themesimple;
+    }
+  }
+  /* 统一布局 */
+// 最大宽度1920 最小宽度1200 背景色#fff
+.layout(@max-width: 1920px, @min-width: 1200px, @backgroundColor: #fff) {
+    max-width: @max-width;
+    min-width: @min-width;
+    background-color: @backgroundColor;
+    margin: 0 auto;
+  }
+
+//   @include font_color();

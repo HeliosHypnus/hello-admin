@@ -1,0 +1,44 @@
+@link-color: #00375b;
+@primary-color: green;
+:root {
+  --PC: @primary-color; //color.less中加入css原生变量：--PC
+}
+body {
+  &.m-light {
+    color: #414750;
+    @body-background: #fff;
+    @component-background: #fff;
+  }
+  &.m-dark {
+    color: #a8a9bb;
+    @body-background: #1e1e2d;
+    @component-background: #1e1e2d;
+    background-color: #1e1e2d;
+    .ant-layout {
+      background-color: #2c2c43;
+    }
+  }
+  #nprogress {
+    .bar {
+      background:  @primary-color!important; //自定义颜色
+    }
+  }
+}
+.primary-color {
+  color: @primary-color;
+}
+@hover-color: #efefef;
+@bg-color: #f0f2f5;
+@font-color1: #fff;
+@layout-header-height: 50px;
+@layout-header-background: #343339;
+@layout-sider-background: #fafafa;
+@border-radius-base: 5px;
+@input-height-base: 36px;
+@btn-height-base: 36px;
+@menu-item-color: #444;
+@item-hover-bg: @hover-color;
+@table-row-hover-bg: @hover-color;
+@select-item-selected-bg: @hover-color;
+@select-item-active-bg: @hover-color;
+@animation-duration-base: 0.1s;
