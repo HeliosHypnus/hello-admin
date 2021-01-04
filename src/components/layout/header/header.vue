@@ -60,6 +60,7 @@ function useSetting(store: Store<IGlobalState>, router: Router) {
     function setIsCollapse(isCollapse: boolean) {
         store.commit(`setting/${Types.SET_COLLAPSE}`, isCollapse);
     }
+    // 设置主题
     function setTheme(theme: string) {
         store.commit(`setting/${Types.SET_THEME}`, theme);
         document.body.className = `m-${theme}`

@@ -47,8 +47,6 @@
 </template>
 
 <script lang="ts">
-// import { createApp } from 'vue';
-// import { Options } from 'vue-class-component';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { defineComponent, reactive, toRefs } from 'vue';
 import { useStore } from 'vuex';

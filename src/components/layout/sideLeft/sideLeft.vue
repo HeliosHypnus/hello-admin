@@ -2,6 +2,7 @@
     <a-layout-sider
         :trigger="null"
         collapsible
+        :inlineCollapsed="true"
         :theme="theme"
         v-model:collapsed="isCollapse"
         :class="{sider: isCollapse}"
@@ -16,6 +17,8 @@
             mode="inline"
             :defaultSelectedKeys="activeMenu"
             :selectedKeys="activeMenu"
+            @mouseenter="mouseenter"
+            @mouseleave="mouseleave"
             @click="setActiveMenu">
                 <template v-for="item in routers[0].children" :key="item.path">
                     <a-menu-item :key="item.path" v-if="!item.children">
@@ -37,7 +40,7 @@
 <script lang='ts'>
 import { IGlobalState } from '@/store'
 import { useRouter, Router } from  'vue-router'
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, reactive, toRefs, ReactiveEffectOptions } from 'vue';
 import * as Types from '@/store/action-types';
 import { useStore, Store } from 'vuex';
 import routes from '@/router/index';
@@ -46,13 +49,8 @@ function useSetting(store: Store<IGlobalState>, router: Router) {
     const isCollapse = computed(() => store.state.setting.isCollapse);
     const activeMenu = computed(() => store.state.setting.activeMenu);
     const theme = computed(() => store.state.setting.theme);
-    // 设置主题
-    function setTheme(theme: string) {
-        store.commit(`setting/${Types.SET_THEME}`, theme);
-    }
     function setActiveMenu(activeMenu: any) {
         const { keyPath } = activeMenu;
-        debugger
         const path = keyPath.reverse().join('/');
         router.push(path);
         store.commit(`setting/${Types.SET_ACTIVEMENU}`, keyPath);
@@ -61,7 +59,6 @@ function useSetting(store: Store<IGlobalState>, router: Router) {
         isCollapse,
         activeMenu,
         theme,
-        setTheme,
         setActiveMenu
     }
 }
@@ -70,17 +67,32 @@ export default defineComponent({
         const routers = routes.options.routes
         const router= useRouter();
         const store = useStore<IGlobalState>();
+        const state = reactive({
+            setCollapse: false
+        })
+        // function mouseenter() {
+        //     if (isCollapse.value) {
+        //         state.setCollapse = true
+        //     }
+        // }
+        // const mouseleave = () => {
+        //     if (!isCollapse.value) {
+        //         store.commit(`setting/${Types.SET_COLLAPSE}`, !isCollapse.value);
+        //     }
+        // }
         const { isCollapse } = useSetting(store, router);
-        const { activeMenu, setActiveMenu } = useSetting(store, router);
-        const { theme, setTheme } = useSetting(store, router);
+        const { activeMenu, setActiveMenu} = useSetting(store, router);
+        const { theme } = useSetting(store, router);
         return {
+            ...toRefs(state),
             isCollapse,
             activeMenu,
             theme,
+            routers,
             setActiveMenu,
-            setTheme,
-            routers
-        } 
+            // mouseenter,
+            // mouseleave
+        }
     }
 })
 </script>
