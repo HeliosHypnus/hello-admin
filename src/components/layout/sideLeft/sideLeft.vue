@@ -6,19 +6,19 @@
         :theme="theme"
         v-model:collapsed="isCollapse"
         :class="{sider: isCollapse}"
+        @mouseenter.prevent="mouseenter(isCollapse)"
+        @mouseleave.prevent="mouseleave(isCollapse)"
         width="260"
     >
         <div class="logo">
             <img src="../../../assets/logo.png" alt="">
-            <h1 :class="{hideTitle: isCollapse}">hello Admin</h1>
+            <h1 :class="{hideTitle: setCollapse || isCollapse}">hello Admin</h1>
         </div>
         <a-menu
             class="theme"
             mode="inline"
             :defaultSelectedKeys="activeMenu"
             :selectedKeys="activeMenu"
-            @mouseenter="mouseenter"
-            @mouseleave="mouseleave"
             @click="setActiveMenu">
                 <template v-for="item in routers[0].children" :key="item.path">
                     <a-menu-item :key="item.path" v-if="!item.children">
@@ -40,12 +40,12 @@
 <script lang='ts'>
 import { IGlobalState } from '@/store'
 import { useRouter, Router } from  'vue-router'
-import { computed, defineComponent, reactive, toRefs, ReactiveEffectOptions } from 'vue';
+import { computed, defineComponent, reactive, toRefs } from 'vue';
 import * as Types from '@/store/action-types';
 import { useStore, Store } from 'vuex';
 import routes from '@/router/index';
 // 菜单设置
-function useSetting(store: Store<IGlobalState>, router: Router) {
+function useSetting(store: Store<IGlobalState>, router: Router, state: any) {
     const isCollapse = computed(() => store.state.setting.isCollapse);
     const activeMenu = computed(() => store.state.setting.activeMenu);
     const theme = computed(() => store.state.setting.theme);
@@ -55,11 +55,26 @@ function useSetting(store: Store<IGlobalState>, router: Router) {
         router.push(path);
         store.commit(`setting/${Types.SET_ACTIVEMENU}`, keyPath);
     }
+    // 鼠标移入
+    function mouseenter(isCollapse: boolean) {
+        if (isCollapse) {
+            store.commit(`setting/${Types.SET_COLLAPSE}`, !isCollapse);
+        }
+        state.setCollapse = isCollapse;
+    }
+    // 鼠标离开
+    function mouseleave(isCollapse: boolean) {
+        if (!isCollapse && state.setCollapse) {
+            store.commit(`setting/${Types.SET_COLLAPSE}`, !isCollapse);
+        }
+    }
     return {
         isCollapse,
         activeMenu,
         theme,
-        setActiveMenu
+        setActiveMenu,
+        mouseleave,
+        mouseenter
     }
 }
 export default defineComponent({
@@ -70,19 +85,9 @@ export default defineComponent({
         const state = reactive({
             setCollapse: false
         })
-        // function mouseenter() {
-        //     if (isCollapse.value) {
-        //         state.setCollapse = true
-        //     }
-        // }
-        // const mouseleave = () => {
-        //     if (!isCollapse.value) {
-        //         store.commit(`setting/${Types.SET_COLLAPSE}`, !isCollapse.value);
-        //     }
-        // }
-        const { isCollapse } = useSetting(store, router);
-        const { activeMenu, setActiveMenu} = useSetting(store, router);
-        const { theme } = useSetting(store, router);
+        const { isCollapse } = useSetting(store, router, state);
+        const { activeMenu, setActiveMenu, mouseleave, mouseenter} = useSetting(store, router, state);
+        const { theme } = useSetting(store, router, state);
         return {
             ...toRefs(state),
             isCollapse,
@@ -90,8 +95,8 @@ export default defineComponent({
             theme,
             routers,
             setActiveMenu,
-            // mouseenter,
-            // mouseleave
+            mouseenter,
+            mouseleave
         }
     }
 })
