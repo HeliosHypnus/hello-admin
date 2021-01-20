@@ -42,9 +42,9 @@ service.interceptors.request.use((config: any) => {
     nprogress.start();
     if ( !config.neverCancel ) {
         // 生成canalToken
-        config.cancelToken = new CancelToken((c: any) => {
-            removePending(config, c)
-        })
+        // config.cancelToken = new CancelToken((c: any) => {
+        //     removePending(config, c)
+        // })
       }
     return config
 }, (err: any) => {
@@ -55,7 +55,7 @@ service.interceptors.request.use((config: any) => {
 /* 响应拦截 */
 service.interceptors.response.use((response: AxiosResponse) => {
     nprogress.done()
-    removePending( response.config );
+    // removePending( response.config );
     return response
 }, (err: any) => {
     nprogress.done()

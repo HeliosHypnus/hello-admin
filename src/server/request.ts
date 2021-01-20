@@ -5,7 +5,7 @@ import request from '@/config/axios.config';
  * @param {Object} params 请求参数
  * @param {Object} header 请求需要设置的header头
  */
-export const get = (url: string, params: object, header?: {}) => {
+export const get = (url: string, params?: object, header?: {}) => {
     return request({
       url: url,
       method: 'get',
