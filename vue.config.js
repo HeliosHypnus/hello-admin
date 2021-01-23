@@ -1,4 +1,6 @@
 module.exports = {
+    outputDir: 'build',
+    publicPath: process.env.NODE_ENV === 'production' ? '/helloadmin-vue/' : '/' ,
     devServer: {
         proxy: {
             '/admin': {    // search为转发路径
