@@ -1,4 +1,4 @@
-<p align="center"><a href="https://demo.helloadmin.cn" target="_blank"><img src="https://raw.githubusercontent.com/heliosker/helloadmin-laravel/master/public/logo.png" width="100"></a></p>
+<p align="center"><a href="" target="_blank"><img src="https://raw.githubusercontent.com/heliosker/helloadmin-laravel/master/public/logo.png" width="100"></a></p>
 
 ## Helloadmin Vue
 
