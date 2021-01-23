@@ -1,0 +1,65 @@
+{
+  "id": "2299234",
+  "name": "helloAdmin",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "14853302",
+      "name": "配置中心",
+      "font_class": "deploy-center",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "936760",
+      "name": "配置",
+      "font_class": "peizhi",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "1160248",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e6b5",
+      "unicode_decimal": 59061
+    },
+    {
+      "icon_id": "13168401",
+      "name": "配置",
+      "font_class": "deploy",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "554513",
+      "name": "明暗",
+      "font_class": "iconset0477",
+      "unicode": "e764",
+      "unicode_decimal": 59236
+    },
+    {
+      "icon_id": "6099217",
+      "name": "亮度-",
+      "font_class": "sun",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "11855594",
+      "name": "亮度",
+      "font_class": "liangdu",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "14720823",
+      "name": "夜间模式   深夜模式  月亮",
+      "font_class": "moon",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    }
+  ]
+}
