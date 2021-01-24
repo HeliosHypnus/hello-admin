@@ -48,4 +48,4 @@ jobs:
             bucket: staging-helloadmin
             # e.g. "oss-cn-shanghai.aliyuncs.com"
             endpoint: oss-cn-hongkong.aliyuncs.com
-            folder: /   
+            folder: build
