@@ -28,3 +28,26 @@ export enum LOGIN_types {
     VUE,
     NODE
 }
+export interface MenuItem {
+  icon: string | null;
+  id: number;
+  title: string;
+  parent_id: number;
+  uri: string;
+}
+/**
+ * @description: 获取菜单接口
+ */
+export interface GetByUserIdParams {
+  userId: number | string;
+}
+
+/**
+ * @description: 获取菜单返回值
+ */
+export type GetMenuListResult = MenuItem[];
+
+/**
+ * 角色code返回值
+ */
+export type GetAuthCodeByUserIdResult = string[];

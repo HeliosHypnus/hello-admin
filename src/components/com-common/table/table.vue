@@ -2,33 +2,65 @@
     <a-table
     :columns="columns"
     :row-key="setKey"
-    :data-source="tableData || data"
-    :pagination="pagination ? dePagination : false"
+    :data-source="data"
+    :pagination="dePagination"
     :loading="loading"
     @change="handleTableChange"
+    v-bind="{...$props, ...$attrs}"
     >
-    <template #name="{ text }"> {{ text.first }} {{ text.last }} </template>
+    <template v-slot:title>
+      <div class="left-title">
+        <a-button>Refresh</a-button>
+      </div>
+      <div class="right-title">
+        <slot name="right-title"></slot>
+      </div>
+    </template>
+    <template v-for="(value, key) in $slots" v-slot:[key]="slotProps">
+      <slot :name="key" v-bind="slotProps"></slot>
+    </template>
+    <!-- <slot v-if="$slots[slotItem.slots.customRender]" :name="slotItem.slots.customRender" v-bind="slotProps"></slot> -->
   </a-table>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
+import { defineComponent, reactive, toRefs, PropType } from 'vue';
+import {ColumnProps, TableProps} from 'ant-design-vue/lib/table/interface'
+import {PaginationProps} from 'ant-design-vue/lib/pagination/Pagination'
+export { default as omit } from 'lodash/omit';
+interface Columns extends ColumnProps{
+  actions?: any
+  dataIndex: string
+}
+
+type pageOption = Partial<typeof PaginationProps>
+
+interface Props extends Omit<TableProps, 'columns'>{
+  columns: Columns[]
+  rowKey: string | ((record: any) => string)
+  pageOption: pageOption
+  getList: (prams: any) => any
+}
 export default defineComponent({
     name: 'table',
     props: {
         columns: {
-            type: Array,
-            default: () => ([])
+            type: Object as PropType<Columns[]>
         },
-        tableData: {
-            type: [Array, String],
-            default: ''
+        rowSelection: {
+            type: Object
         },
-        pagination: {
-            type: [Boolean, Object],
-            default: () => true
+        rowKey: { // 表格唯一字段
+            type: [String, Function] as PropType<string | ((record: any) => string)>,
+        },
+        pageOption: { // 分页参数
+            type: Object as PropType<pageOption>,
+            default: () => ({})
+        },
+        getList: {
+            type: Function
         }
     },
-    setup() {
+    setup(props: any) {
         const state = reactive({
             loading: false,
             data: [],
@@ -39,7 +71,7 @@ export default defineComponent({
                 size: 'small',
                 showTotal: (total: number) => `总共 ${total} 条`,
                 type: null,
-                pageSizeOptions: [],
+                pageSizeOptions: ['10', '20', '30'],
                 pageSize: 10,
                 current: 1,
                 total: 0
@@ -48,6 +80,20 @@ export default defineComponent({
         const setKey = (a: any) => {
             return a.id
         }
+        const initTableData = async(params = {}) => {
+            params = {
+                page: state.dePagination.current,
+                limit: state.dePagination.pageSize,
+                ...props.pageOption,
+                ...params
+            }
+            const { data } = await props.getList(params)
+            if (data.code === 200) {
+                state.data = data.data.list
+                state.dePagination.total = data.data.meta.total
+            }
+        }
+        initTableData()
         // 底部分页组件变化
        const handleTableChange = (page: any[]) => {
             state.dePagination = {...state.dePagination, ...page};
@@ -57,12 +103,19 @@ export default defineComponent({
         return {
             ...toRefs(state),
             handleTableChange,
+            initTableData,
             setKey
         }
     }
 });
 </script>
 <style lang="less">
+    .ant-table-title {
+        padding-left: 20px;
+        padding-right: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
     .m-dark {
         .ant-table-body {
             color: #a8a9bb;

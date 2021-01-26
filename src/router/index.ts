@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/home/index.vue";
-import Login from "../views/Login.vue";
-import Main from '../components/layout/main/main.vue'
+import Home from "@/views/home/index.vue";
+import Login from "@/views/Login.vue";
+import Main from '@/components/layout/main/main.vue'
 
 const routes: Array<RouteRecordRaw> = [
 {
@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
 				icon: 'icon-deploy'
 			},
 			component: () =>
-			import(/* webpackChunkName: "index" */ "../views/index/index.vue"),
+			import(/* webpackChunkName: "index" */ "@/views/index/index.vue"),
 		},
 		{
 			path: "/admin",
@@ -37,8 +37,28 @@ const routes: Array<RouteRecordRaw> = [
 						icon: 'icon-deploy'
 					},
 					component: () =>
-					import(/* webpackChunkName: "User" */ "../views/user/index.vue"),
-				}
+					import(/* webpackChunkName: "user" */ "@/views/user/index.vue"),
+				},
+				{
+					path: 'role',
+					name: 'role',
+					meta: {
+						title: 'Role',
+						icon: 'icon-deploy'
+					},
+					component: () =>
+					import(/* webpackChunkName: "role" */ "@/views/role/index.vue"),
+				},
+				{
+					path: 'menu',
+					name: 'menu',
+					meta: {
+						title: 'Menu',
+						icon: 'icon-deploy'
+					},
+					component: () =>
+					import(/* webpackChunkName: "menu" */ "@/views/menu/index.vue"),
+				},
 			]
 		}
 	]

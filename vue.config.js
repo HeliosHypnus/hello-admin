@@ -1,4 +1,5 @@
 module.exports = {
+    outputDir: 'build',
     devServer: {
         proxy: {
             '/admin': {    // search为转发路径

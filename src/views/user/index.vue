@@ -1,12 +1,16 @@
 <template>
     <div class="about">
-
-                <Table :columns="columns" :tableData="data"></Table>
+        <Table :columns="columns" :getList="getAdmin">
+            <!-- <template v-slot:id>
+                dsdaddddddddddddddddddddddddddddddd
+            </template> -->
+        </Table>
     </div>
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue';
-import Table from '@/components/com-common/table/table.vue'
+import Table from '@/components/com-common/table/table.vue';
+import { getAdmin } from '@/server/admin';
 export default defineComponent({
     name: 'user',
     components: {
@@ -17,7 +21,10 @@ export default defineComponent({
             columns: [
                 {
                     title: 'ID',
-                    dataIndex: 'id'
+                    dataIndex: 'id',
+                    slots: {
+                        customRender: 'id'
+                    },
                 },
                 {
                     title: 'Name',
@@ -34,7 +41,7 @@ export default defineComponent({
                 {
                     title: 'Updated At',
                     dataIndex: 'updated_at'
-                },
+                }
             ],
             data: [
                 {
@@ -68,7 +75,8 @@ export default defineComponent({
             ]
         })
         return {
-            ...toRefs(state)
+            ...toRefs(state),
+            getAdmin
         }
     }
 });

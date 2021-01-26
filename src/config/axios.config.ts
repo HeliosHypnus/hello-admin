@@ -12,7 +12,8 @@ const service = axios.create({
     headers: {
         'ContentType': 'application/json',
         'Authorization': `Bearer ${store.state.login.tokenInfo.access_token}`
-    }
+    },
+    baseURL: process.env.VUE_APP_BASE_API
 })
 
 // 防止重复提交
@@ -42,9 +43,9 @@ service.interceptors.request.use((config: any) => {
     nprogress.start();
     if ( !config.neverCancel ) {
         // 生成canalToken
-        config.cancelToken = new CancelToken((c: any) => {
-            removePending(config, c)
-        })
+        // config.cancelToken = new CancelToken((c: any) => {
+        //     removePending(config, c)
+        // })
       }
     return config
 }, (err: any) => {
@@ -55,7 +56,7 @@ service.interceptors.request.use((config: any) => {
 /* 响应拦截 */
 service.interceptors.response.use((response: AxiosResponse) => {
     nprogress.done()
-    removePending( response.config );
+    // removePending( response.config );
     return response
 }, (err: any) => {
     nprogress.done()
