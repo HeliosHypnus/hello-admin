@@ -108,8 +108,8 @@ export default defineComponent({
     height: 100vh;
     .login-module {
         box-shadow: 0px 2px 13px 1px rgba(0, 0, 0, 0.1);
-        width: 35vw;
-        padding: 1vw 5vw;
+        width: 430px;
+        padding: 1vw 0px;
         box-sizing: border-box;
         margin: 0 auto;
         position: absolute;
@@ -135,7 +135,7 @@ export default defineComponent({
         .l-form {
             width: 80%;
             margin: 0 auto;
-            margin-top: 100px;
+            margin-top: 60px;
             .p-password {
                 display: flex;
                 justify-content: space-between;
