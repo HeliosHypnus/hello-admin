@@ -12,7 +12,8 @@ const service = axios.create({
     headers: {
         'ContentType': 'application/json',
         'Authorization': `Bearer ${store.state.login.tokenInfo.access_token}`
-    }
+    },
+    baseURL: process.env.VUE_APP_BASE_API
 })
 
 // 防止重复提交
