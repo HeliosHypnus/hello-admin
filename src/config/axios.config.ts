@@ -10,7 +10,6 @@ const service = axios.create({
     timeout: 5000,  // 超时时间
     withCredentials: true,
     headers: {
-        'ContentType': 'application/json',
         'Authorization': `Bearer ${store.state.login.tokenInfo.access_token}`
     },
     baseURL: process.env.VUE_APP_API_URL
