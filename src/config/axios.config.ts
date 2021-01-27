@@ -13,7 +13,7 @@ const service = axios.create({
         'ContentType': 'application/json',
         'Authorization': `Bearer ${store.state.login.tokenInfo.access_token}`
     },
-    baseURL: process.env.VUE_APP_BASE_API
+    baseURL: process.env.VUE_APP_API_URL
 })
 
 // 防止重复提交
